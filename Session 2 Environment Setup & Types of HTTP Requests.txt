@@ -1,0 +1,120 @@
+Workspace & Collection & Requests
+
+
+
+
+Workspace
+- area where we maintain and saved files [test cases, requests, …].
+- collaborative, secure environments to organize, share, and manage APIs, collections, and environments.
+- enable team collaboration (private or team), personal development, and public API sharing.
+
+1. create: Users can create them via the Workspaces header dropdown, select visibility, and track changes.
+Workspaces → Create Workspaces 
+
+2. delete: Users can delete them via the Workspaces via setting tab
+setting tab → Delete Workspaces 
+
+3. rename:
+just double click on Workspace name
+
+
+
+
+Collection
+- groups of saved API requests that allow you to organize, document, share, and automate your API testing workflows.
+- support nesting folders, shared variables, authorization settings, and scripts across requests, enabling efficient collaboration and API lifecycle management. 
+- contain number of folders and http requests.
+- under workspace we can create set of collections
+
+1. create
+Collections → + → blank Collection
+Collections → New → Collection
+
+2. delete 
+on the same name of the collection [three dotes] → click → delete
+
+3. rename:
+just double click on collection name
+
+
+
+---
+
+> when ever you want to test an API
+  Request → API → Response
+>  we send request to API
+>  API Fetch data from database
+>  API Send a response
+
+---
+
+
+
+
+Requests
+- Query Parameters and Path Parameters. 
+- used to send specific instructions or data to a server within the URL. 
+-HTTP Requests Types
+	Get - retrieve a recourse from database
+	Post - create a resource on database 
+	Put - update existing resource on database
+	Patch - for partial updating  
+	Delete - delete existing resource form database
+
+1. create
+on the same name of the collection [three dotes] → click → Add a req
+
+2. delete 
+three dotes
+
+3. rename
+duble click on Req name
+
+
+
+
+Response 
+- the validation is done on the Response Payload part, is 
+	- Status validation
+	- body/payload [.json or .xml]. 
+	- cookies 
+	- Headers
+	- Test Results
+	- we get also information [time & size of data]
+
+
+- Note:
+    - when you send the request in the PUT & POST, we put the ID in the URL :
+		ex: https://reqres.in/api/users/673
+    
+    - when you send the request in the GET : 
+        	ex: https://reqres.in/api/users?page=2
+		    https://reqres.in/api/users?page=3
+        
+    - at the end of writing your request click **save** to save your work
+
+    - to run all the requests - three dots on collection name → Run Collection
+
+- HTTP Status Code:
+3 levels: 
+200
+ - 200 OK
+ - 201 Created
+ - 202 Accepted
+ - 203 Non-Authoritative
+ - 204 No content 
+
+400
+ - 400 Bad Request
+ - 401 Unauthorized
+ - 403 Forbidden
+ - 404 Not Found
+ - 409 Confilict
+
+500
+ - 500 Internal Server Error
+ - 501 Not Implemented
+ - 502 Bad Gateway 
+ - 503 Service Unavailable
+ - 504 Gateway Timeout
+ - 509 Network Timeout
