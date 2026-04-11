@@ -1,20 +1,20 @@
-What is Client & server?
+What is Client & Server?
 - A client:
-is a computer **hardware** device or **software** that accesses a service made available by server.
-the server is often (but not always) located on a separate physical computer
+is a computer hardware device or software that accesses a service made available by a server.
+The server is often (but not always) located on a separate physical computer
 - A server:
-is physical computer dedicated to run services to serve the needs of other computers. 
+is a physical computer dedicated to running services to serve the needs of other computers. 
 Depending on the service that is running. it could be a file server, database server, home media server, print server, or web server
 
 
 client-server architecture
-- web-application is follow 3 architecture
+- web-application follows 3 architectures
     - 1-tier architecture
-	- single system & no-internet where the client will be running & no-database some files on excel sheet, then save these files on the same machine [for this reason we don’t need database/and internet]
+	- single system & no-internet where the client will be running & no-database, some files on an Excel sheet, then save these files on the same machine [for this reason we don’t need database/and internet]
         - server = file system
-        - client + server in the same machine
+        - client + server on the same machine
     - 2-tier architecture 
-	- multi-client have access to the database, database on some other machine
+	- multi-client has access to the database, database on some other machine
         - ex. internet application
     - 3-tier architecture
 	 - between client and server is a business logic [take request from client, send it to database, fetch data, send it back to client]
