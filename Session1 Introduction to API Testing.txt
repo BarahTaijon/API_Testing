@@ -1,0 +1,91 @@
+What is Client & server?
+- A client:
+is a computer **hardware** device or **software** that accesses a service made available by server.
+the server is often (but not always) located on a separate physical computer
+- A server:
+is physical computer dedicated to run services to serve the needs of other computers. 
+Depending on the service that is running. it could be a file server, database server, home media server, print server, or web server
+
+
+client-server architecture
+- web-application is follow 3 architecture
+    - 1-tier architecture
+	- single system & no-internet where the client will be running & no-database some files on excel sheet, then save these files on the same machine [for this reason we don’t need database/and internet]
+        - server = file system
+        - client + server in the same machine
+    - 2-tier architecture 
+	- multi-client have access to the database, database on some other machine
+        - ex. internet application
+    - 3-tier architecture
+	 - between client and server is a business logic [take request from client, send it to database, fetch data, send it back to client]
+
+
+3 layer in the 3-tier architecture:
+    - presentation layer (GUI) - present data to the user/client
+    - application layer (logic & Code) - having the business logic, take the request from the presentation layer,  send it to the data layer, receive the data fetched and send it back to presentation layer
+    - data layer (DB layer) - install databases.
+
+
+What is an API?
+Application program interface (API): the way of communication between two applications where applications may differ in their platforms or in terms of technology
+
+- in API testing we don’t use front-end [presentation layer], 
+	- instead we directly send request and receive response, we make validation on response.
+
+
+Types of an API:
+1. SOAP - Simple Object Access Protocol.
+2. REST - Representational State Transfer [more common and used].
+→ both are web services.
+
+
+API Vs Webservice:
+- once you place the API On the Internet it called (Webservice).
+- ex. google app contact with Facebook app through API [Webservice]
+- all Webservices are APIs, but not all APIs are Webservice
+
+
+REST API methods:
+- We basically take request and send a response.
+1. Request Message
+    type of Rest API methods:    
+    - get - get data from a server.
+    - post - post data to the server to store it.
+    - put - update an existing data.
+    - delete - delete exist data on the database.
+→ Note: all the operations you will do, it will come under at least it one of these requests.    
+2. Response Message
+    some validations are performed on the response.
+
+
+http Vs https
+- HTTP - if you sending the data form client to server it will be transferred it **as is** in the original format, so there is a chance to hack the data
+- HTTPs - ur data is transferred in the **encrypted** format.
+
+
+Terminologies
+- URL, URI, & URN
+URL- Uniform Resource Locator [the big one]
+URI- Uniform Resource Identifier
+URN- Uniform Resource Name
+
+- URL/URI contains 3-parts:
+    1. scheme- protocol
+    2. host- domain - where the data exist
+    3. path- the rest of URL - Resource - folders - **endpoint**
+
+- URI = host & path
+
+- URN = path
+
+
+
+Feature & Resource
+Feature: is the term used in **manual** testing to test some functionality
+Resource: is the term used in **API** Automation testing referring some functionality.
+
+
+Payload
+the body in the HTTP request and response message **the data** we are sending/receiving the request/response
+        - request payload
+        - response payload
