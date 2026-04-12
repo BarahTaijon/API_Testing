@@ -4,18 +4,18 @@ Workspace & Collection & Requests
 
 
 Workspace
-- area where we maintain and saved files [test cases, requests, …].
+- The Area where we maintain and save files [test cases, requests, …].
 - collaborative, secure environments to organize, share, and manage APIs, collections, and environments.
 - enable team collaboration (private or team), personal development, and public API sharing.
 
 1. create: Users can create them via the Workspaces header dropdown, select visibility, and track changes.
 Workspaces → Create Workspaces 
 
-2. delete: Users can delete them via the Workspaces via setting tab
+2. delete: Users can delete them via the Workspaces via the settings tab
 setting tab → Delete Workspaces 
 
 3. rename:
-just double click on Workspace name
+Just double-click on the Workspace name
 
 
 
