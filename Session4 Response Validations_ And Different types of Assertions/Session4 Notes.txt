@@ -4,9 +4,9 @@ Response Validation:
 	- Response time
 	- Response body
 
-- To validate them we add Assertion:
-- To create one, in JavaScript there are a library used to by postman called `pm` library (pm stands for PostMan). 
-	inside pm there is a function called `test`. we can implement test in two ways:
+- To validate them, we add Assertion:
+- To create one, in JavaScript, there is a library used by Postman called `pm` library (pm stands for PostMan). 
+	Inside PM, there is a function called `test`. We can implement test in two ways:
 
 1. Normal Function Syntax
     
@@ -28,7 +28,7 @@ Response Validation:
     );
     
   
-- Note: these Assertions written in scripts tap in postman (beside body tab)
+- Note: these assertions are written in scripts tap in Postman (beside body tab)
 
 
 =====
@@ -43,7 +43,7 @@ pm.response.to.have.status(200);
 });
 
 
-b. if you want to test for the status code being on of a `set` [multiple status code], then include them all in an array:
+b. if you want to test for the status code being one of a `set` [multiple status codes], then include them all in an array:
 
 pm.test("Successful POST request", ()=>{
 pm.expect(pm.response.code).to.be.oneOf([201,202]);
@@ -64,20 +64,19 @@ Note: Go to `Test Results` to show the results of running tests.
 
 
 2. Testing Headers
-- To check if header has proper values or not.
+- To check if the header has proper values or not.
 - The most important thing to check is `content type`
-	- type of response file (in json format/not).
+	- type of response file (in JSON format/not).
 		-  `application/json`
 		-  `application/xml`
-- There are some keys can't be tested, because it’s dynamically changing, 
-	- things can check: connection, expires
+- Some keys can't be tested, because it’s dynamically changing, 
+	- things to check: connection, expires
 	- things dynamic: Date
-a. check that a response header is present
+a. Check that a response header is present
 
 pm.test("Content-type header is present",()=>{
 pm.response.to.have.header("Content-Type");
 });
-
 
 b. test for a response header having a particular value:
 
@@ -90,8 +89,8 @@ pm.expect(pm.response.headers.get("Content-Type")).to.eql("application/json");
 
 
 3. Testing cookies
-- the cookies keep changing but there is some cookies doesn’t.
-- We verify the value of cookie
+- The cookies keep changing, but others don’t.
+- We verify the value of the cookie
 
 a. Test if a cookie is present in the response:
 
@@ -138,23 +137,23 @@ pm.test("Test data type of the response",()=>{
     pm.expect(jsonData.courses).to.be.an("array");
 });
 
-- first line to capture the whole response, and get a copy of response in jsonData, 
-we can put it as a first line in the function [but at real put it global to be accessed by multiple functions]
-- 2nd the whole is an object
+- first line to capture the whole response, and get a copy of the response in jsonData, 
+We can put it as a first line in the function [but at real put it global to be accessed by multiple functions]
+- 2nd, the whole is an object
 
 
 
 B. Asserting array properties
 
--check if on array is empty and if it contains particular items:
+-check if the array is empty and if it contains particular items:
 
 const jsonData = pm.response.json();
 pm.test("Test array properites",()=>{
 
-    //courses includes "Java"
+    //courses include "Java"
     pm.expect(jsonData.courses).to.include('Java');
 
-    //courses includes "Selenium"
+    //courses include "Selenium"
     pm.expect(jsonData.courses).to.include('Selenium');
 
     //courses does not include "Python"
@@ -204,7 +203,7 @@ pm.test("Response matches the JSON Schema", function () {
     pm.response.to.have.jsonSchema(schema);
 });
 
-- to generate this schema (descriping the type)
+- to generate this schema (describing the type)
 	- Google "generate a json schema" || Go to this site "https://transform.tools/json-to-json-schema"
-	- past you json file and click ctrl+enter
+	- past you json file and click Ctrl+Enter
 
