@@ -1,0 +1,133 @@
+- execution done in this order:
+     pre-request script → send request → receive response → tests[post-response script]
+    
+
+- pre-request & post-respose scripts available in 3 levels:
+    - collection
+    - folder
+    - request
+
+- the biggest one is collection inside it folder inside it a request
+
+- The flow of execution: 
+Collection (pre-req-script) → Folder (pre-req-script) → Request (pre-req-script)  [Reqest → Respond] Collection (post-resp-script) → Folder (post-resp-script) → Request (post-resp-script)
+
+
+----
+
+
+- In order show the order of execution, This statement is written at the 3-lvls [pre & post]
+
+console.log("pre-request script at collection lvl");
+
+- Then run the collection
+
+- After that open the `console` [you can find it at the left corner] & and that's the statements found:
+ 
+pre-request script at collection lvl
+pre-request script at folder lvl
+pre-request script at request lvl
+ 
+GET https://reqres.in/api
+ 
+post-response script at collection lvl
+post-response script at folder lvl
+post-response script at reqest lvl
+
+
+
+
+
+----
+
+
+
+
+
+Variables
+
+- what? it is where we can store some data.
+- why needed in postman? to avoid duplication
+- Where to create variable? created in multiple Level/Scope of variables [based on the scope access lvl]: Global, Collection, Environment, Local, data
+- How to create? (in the corner) click on the icon called `variables in this reqest`.
+
+
+1. Global
+- can access through in the workspace [all collections, folders, and requests]
+- to add one:
+    1. click here `variables in this reqest` icon
+    2. click *add* under Global section
+    3. add the name & value of the variable 
+- add th var to all Req then open the consol to see the var part.
+
+
+Note: - var is sth common (e.g., Host in the URL).
+      - Don't forget to **save** after adding variables 
+
+2. collection
+- can access only within collection
+- to add one:
+    1. click here `variables in this reqest` icon
+    2. click *add* under (the name of the collection) section
+    3. add the name & value of the variable 
+
+
+3. Environment
+- accessable in all collections within a particular environment.
+- Is a named set of key-value pairs (variables) that allows you to manage different setups.
+  environment: Development, Staging/testing, pre-production, and production.
+- change URLs & values - without changing your API requests.
+- to add one:
+    1. click here `variables in this reqest` icon
+    2. Add/click on an environment
+    3. click *add* under Environment section
+    4. add the name & value of the variable 
+
+Note: Env is Globle within a particular env
+
+
+4. Local
+- accessible only within request.
+- created on request level
+- Can only defined in `pre-reqest script` 
+- to add one:
+    1.  on `pre-reqest script` 
+    2. define the name & value of the var. ex.:
+	//loacal variable
+	pm.variables.set("url_local","http://localhost:3000");
+
+
+5. Data
+- To create the data from an external files csv/text/…
+(Next sessions)
+
+
+========
+
+
+- So far we create variables from UI directly [except local],
+  to create (global, env, and collection) variables through pre-scripts
+  Also, we can unset or remove these variables.
+
+
+//loacal variable
+pm.variables.set("url_local","http://localhost:3000");
+
+//global variable
+pm.globals.set("user_id","2"); 
+
+//environment variable
+pm.environment.set("urerid_qa_env","4"); 
+
+//collection variable 
+pm.collectionVariables.set("userid_coll","22");  
+
+
+==========
+
+Practice
+Your requirement is to 
+1.create a global variable,
+2.use it in the request, 
+3.after using it, delete that variable..
+
