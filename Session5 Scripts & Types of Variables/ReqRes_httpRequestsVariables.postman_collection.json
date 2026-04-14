@@ -1,0 +1,1000 @@
+{
+  "info": {
+    "_postman_id": "4af96e7d-67a0-45dc-b9f3-7bc1476c1715",
+    "name": "ReqRes_httpRequestsVariables",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "36794430",
+    "_collection_link": "https://go.postman.co/collection/36794430-4af96e7d-67a0-45dc-b9f3-7bc1476c1715?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "Global _Get Single User",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"status code is 200\",()=>{\r",
+              "pm.response.to.have.status(200);\r",
+              "});\r",
+              "\r",
+              "pm.test(\"Successful GET request\", ()=>{\r",
+              "pm.expect(pm.response.code).to.be.oneOf([200,202]);\r",
+              "});\r",
+              "\r",
+              "pm.test(\"status code name has string\",()=> {\r",
+              "pm.response.to.have.status(\"OK\");\r",
+              "});\r",
+              "\r",
+              "const jsonData = pm.response.json();\r",
+              "pm.test(\"Test array properites\",()=>{\r",
+              "\r",
+              "    //courses includes \"C#\"\r",
+              "    pm.expect(jsonData.courses).to.include(\"C#\");\r",
+              "\r",
+              "    //courses includes \"RestAPI\"\r",
+              "    pm.expect(jsonData.courses).to.include(\"RestAPI\");\r",
+              "\r",
+              "    //courses does not include \"python\"\r",
+              "    pm.expect(jsonData.courses).to.not.include(\"python\");\r",
+              "\r",
+              "     // coures array must includes all listed\r",
+              "    pm.expect(jsonData.courses).to.include.members([\"C#\", \"RestAPI\"]);\r",
+              "    pm.expect(jsonData.courses).to.have.members([\"RestAPI\", \"C#\"]);\r",
+              "\r",
+              "    //courses length is 2\r",
+              "    pm.expect(jsonData.courses.length).to.eql(2);\r",
+              "    pm.expect(jsonData.courses).to.have.lengthOf(2);\r",
+              "    pm.expect(jsonData.courses).to.have.length(2);\r",
+              "\r",
+              "});\r",
+              "\r",
+              "pm.test(\"Validate the fileds in the Response\",()=>{\r",
+              "var jsonData = pm.response.json();\r",
+              "    pm.expect(jsonData.id).to.eql(\"3\");\r",
+              "    pm.expect(jsonData.name).to.eql(\"Smith\");\r",
+              "    pm.expect(jsonData.location).to.eql(\"Canada\");\r",
+              "    pm.expect(jsonData.phone).to.eql(\"165498765\");\r",
+              "    pm.expect(jsonData.courses[0]).to.eql(\"C#\");\r",
+              "    pm.expect(jsonData.courses[1]).to.eql(\"RestAPI\");\r",
+              "\r",
+              "});\r",
+              "\r",
+              "var schema = {\r",
+              "    \"type\": \"object\",\r",
+              "    \"properties\": {\r",
+              "        \"id\": {\"type\": \"string\"},\r",
+              "        \"name\": {\"type\": \"string\"},\r",
+              "        \"location\": {\"type\": \"string\"},\r",
+              "        \"phone\": {\"type\": \"string\"},\r",
+              "        \"courses\": {\"type\": \"array\", \"items\": {\"type\": \"string\"}}\r",
+              "        },\r",
+              "        \"required\": [\"id\", \"name\", \"location\", \"phone\", \"courses\"]\r",
+              "};\r",
+              "\r",
+              "pm.test(\"Response matches the JSON Schema\", function () {\r",
+              "    pm.response.to.have.jsonSchema(schema);\r",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{global_url}}/1",
+          "host": [
+            "{{global_url}}"
+          ],
+          "path": [
+            "1"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Global_Delete Student",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "{{global_url}}/2",
+          "host": [
+            "{{global_url}}"
+          ],
+          "path": [
+            "2"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Global_Update User",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"id\": 5,\r\n    \"name\": \"Chelsey Dietrich\",\r\n    \"username\": \"Kress\",\r\n    \"email\": \"Lucio_Hettinger@annie.ca\",\r\n    \"address\": {\r\n      \"street\": \"Skiles Walks\",\r\n      \"suite\": \"Suite 356\",\r\n      \"city\": \"Roscoeview\",\r\n      \"zipcode\": \"33263\",\r\n      \"geo\": {\r\n        \"lat\": \"-31.8129\",\r\n        \"lng\": \"62.5342\"\r\n      }\r\n    },\r\n    \"phone\": \"(254)999-1244\",\r\n    \"website\": \"demarco.info\",\r\n    \"company\": {\r\n      \"name\": \"Keebler LLC\",\r\n      \"catchPhrase\": \"User-centric fault-tolerant solution\",\r\n      \"bs\": \"revolutionize end-to-end systems\"\r\n    }\r\n  }",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{global_url}}/5",
+          "host": [
+            "{{global_url}}"
+          ],
+          "path": [
+            "5"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Global_Create New User",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"id\": 12 ,\r\n    \"name\": \"Clementina DuBuque\",\r\n    \"username\": \"Moriah.Stanton\",\r\n    \"email\": \"Rey.Padberg@karina.biz\",\r\n    \"address\": {\r\n      \"street\": \"Kattie Turnpike\",\r\n      \"suite\": \"Suite 198\",\r\n      \"city\": \"Lebsackbury\",\r\n      \"zipcode\": \"31428-2261\",\r\n      \"geo\": {\r\n        \"lat\": \"-38.2386\",\r\n        \"lng\": \"57.2232\"\r\n      }\r\n    },\r\n    \"phone\": \"024-648-3804\",\r\n    \"website\": \"ambrose.net\",\r\n    \"company\": {\r\n      \"name\": \"Hoeger LLC\",\r\n      \"catchPhrase\": \"Centralized empowering task-force\",\r\n      \"bs\": \"target end-to-end models\"\r\n    }}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{global_url}}",
+          "host": [
+            "{{global_url}}"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Global_Get All Users",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Response time is less than 200ms\",()=>{\r",
+              "    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+              "});\r",
+              "\r",
+              "pm.test(\"Time is less than 100 ms\", ()=>{\r",
+              "    pm.expect(pm.response.responseTime).to.be.below(100);\r",
+              "});\r",
+              "\r",
+              "pm.test(\"Time is greater than 2 ms\", ()=>{\r",
+              "    pm.expect(pm.response.responseTime).to.be.above(2);\r",
+              "});\r",
+              "\r",
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{global_url}}",
+          "host": [
+            "{{global_url}}"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "coll_Get Single User",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        },
+        {
+          "listen": "prerequest",
+          "script": {
+            "packages": {},
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{collection_url}}/1",
+          "host": [
+            "{{collection_url}}"
+          ],
+          "path": [
+            "1"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "coll_Get All Users",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{collection_url}}",
+          "host": [
+            "{{collection_url}}"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "coll_Create New User",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"id\": 12 ,\r\n    \"name\": \"Clementina DuBuque\",\r\n    \"username\": \"Moriah.Stanton\",\r\n    \"email\": \"Rey.Padberg@karina.biz\",\r\n    \"address\": {\r\n      \"street\": \"Kattie Turnpike\",\r\n      \"suite\": \"Suite 198\",\r\n      \"city\": \"Lebsackbury\",\r\n      \"zipcode\": \"31428-2261\",\r\n      \"geo\": {\r\n        \"lat\": \"-38.2386\",\r\n        \"lng\": \"57.2232\"\r\n      }\r\n    },\r\n    \"phone\": \"024-648-3804\",\r\n    \"website\": \"ambrose.net\",\r\n    \"company\": {\r\n      \"name\": \"Hoeger LLC\",\r\n      \"catchPhrase\": \"Centralized empowering task-force\",\r\n      \"bs\": \"target end-to-end models\"\r\n    }}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{collection_url}}",
+          "host": [
+            "{{collection_url}}"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "coll_Update User",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"id\": 5,\r\n    \"name\": \"Chelsey Dietrich\",\r\n    \"username\": \"Kress\",\r\n    \"email\": \"Lucio_Hettinger@annie.ca\",\r\n    \"address\": {\r\n      \"street\": \"Skiles Walks\",\r\n      \"suite\": \"Suite 356\",\r\n      \"city\": \"Roscoeview\",\r\n      \"zipcode\": \"33263\",\r\n      \"geo\": {\r\n        \"lat\": \"-31.8129\",\r\n        \"lng\": \"62.5342\"\r\n      }\r\n    },\r\n    \"phone\": \"(254)999-1244\",\r\n    \"website\": \"demarco.info\",\r\n    \"company\": {\r\n      \"name\": \"Keebler LLC\",\r\n      \"catchPhrase\": \"User-centric fault-tolerant solution\",\r\n      \"bs\": \"revolutionize end-to-end systems\"\r\n    }\r\n  }",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{collection_url}}/5",
+          "host": [
+            "{{collection_url}}"
+          ],
+          "path": [
+            "5"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "coll_Delete User",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "{{collection_url}}/2",
+          "host": [
+            "{{collection_url}}"
+          ],
+          "path": [
+            "2"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "TestEnv_Get All Users",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Response time is less than 200ms\",()=>{\r",
+              "    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+              "});\r",
+              "\r",
+              "pm.test(\"Time is less than 100 ms\", ()=>{\r",
+              "    pm.expect(pm.response.responseTime).to.be.below(100);\r",
+              "});\r",
+              "\r",
+              "pm.test(\"Time is greater than 2 ms\", ()=>{\r",
+              "    pm.expect(pm.response.responseTime).to.be.above(2);\r",
+              "});\r",
+              "\r",
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{test_env_url}}",
+          "host": [
+            "{{test_env_url}}"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "TestEnv_Get Single User",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"status code is 200\",()=>{\r",
+              "pm.response.to.have.status(200);\r",
+              "});\r",
+              "\r",
+              "pm.test(\"Successful GET request\", ()=>{\r",
+              "pm.expect(pm.response.code).to.be.oneOf([200,202]);\r",
+              "});\r",
+              "\r",
+              "pm.test(\"status code name has string\",()=> {\r",
+              "pm.response.to.have.status(\"OK\");\r",
+              "});\r",
+              "\r",
+              "const jsonData = pm.response.json();\r",
+              "pm.test(\"Test array properites\",()=>{\r",
+              "\r",
+              "    //courses includes \"C#\"\r",
+              "    pm.expect(jsonData.courses).to.include(\"C#\");\r",
+              "\r",
+              "    //courses includes \"RestAPI\"\r",
+              "    pm.expect(jsonData.courses).to.include(\"RestAPI\");\r",
+              "\r",
+              "    //courses does not include \"python\"\r",
+              "    pm.expect(jsonData.courses).to.not.include(\"python\");\r",
+              "\r",
+              "     // coures array must includes all listed\r",
+              "    pm.expect(jsonData.courses).to.include.members([\"C#\", \"RestAPI\"]);\r",
+              "    pm.expect(jsonData.courses).to.have.members([\"RestAPI\", \"C#\"]);\r",
+              "\r",
+              "    //courses length is 2\r",
+              "    pm.expect(jsonData.courses.length).to.eql(2);\r",
+              "    pm.expect(jsonData.courses).to.have.lengthOf(2);\r",
+              "    pm.expect(jsonData.courses).to.have.length(2);\r",
+              "\r",
+              "});\r",
+              "\r",
+              "pm.test(\"Validate the fileds in the Response\",()=>{\r",
+              "var jsonData = pm.response.json();\r",
+              "    pm.expect(jsonData.id).to.eql(\"3\");\r",
+              "    pm.expect(jsonData.name).to.eql(\"Smith\");\r",
+              "    pm.expect(jsonData.location).to.eql(\"Canada\");\r",
+              "    pm.expect(jsonData.phone).to.eql(\"165498765\");\r",
+              "    pm.expect(jsonData.courses[0]).to.eql(\"C#\");\r",
+              "    pm.expect(jsonData.courses[1]).to.eql(\"RestAPI\");\r",
+              "\r",
+              "});\r",
+              "\r",
+              "var schema = {\r",
+              "    \"type\": \"object\",\r",
+              "    \"properties\": {\r",
+              "        \"id\": {\"type\": \"string\"},\r",
+              "        \"name\": {\"type\": \"string\"},\r",
+              "        \"location\": {\"type\": \"string\"},\r",
+              "        \"phone\": {\"type\": \"string\"},\r",
+              "        \"courses\": {\"type\": \"array\", \"items\": {\"type\": \"string\"}}\r",
+              "        },\r",
+              "        \"required\": [\"id\", \"name\", \"location\", \"phone\", \"courses\"]\r",
+              "};\r",
+              "\r",
+              "pm.test(\"Response matches the JSON Schema\", function () {\r",
+              "    pm.response.to.have.jsonSchema(schema);\r",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{test_env_url}}/1",
+          "host": [
+            "{{test_env_url}}"
+          ],
+          "path": [
+            "1"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "TestEnv_Delete User",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "{{test_env_url}}/2",
+          "host": [
+            "{{test_env_url}}"
+          ],
+          "path": [
+            "2"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "TestEnv_Create New User",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"id\": 12 ,\r\n    \"name\": \"Clementina DuBuque\",\r\n    \"username\": \"Moriah.Stanton\",\r\n    \"email\": \"Rey.Padberg@karina.biz\",\r\n    \"address\": {\r\n      \"street\": \"Kattie Turnpike\",\r\n      \"suite\": \"Suite 198\",\r\n      \"city\": \"Lebsackbury\",\r\n      \"zipcode\": \"31428-2261\",\r\n      \"geo\": {\r\n        \"lat\": \"-38.2386\",\r\n        \"lng\": \"57.2232\"\r\n      }\r\n    },\r\n    \"phone\": \"024-648-3804\",\r\n    \"website\": \"ambrose.net\",\r\n    \"company\": {\r\n      \"name\": \"Hoeger LLC\",\r\n      \"catchPhrase\": \"Centralized empowering task-force\",\r\n      \"bs\": \"target end-to-end models\"\r\n    }}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{test_env_url}}",
+          "host": [
+            "{{test_env_url}}"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "PreproEnv_Get Single User",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"status code is 200\",()=>{\r",
+              "pm.response.to.have.status(200);\r",
+              "});\r",
+              "\r",
+              "pm.test(\"Successful GET request\", ()=>{\r",
+              "pm.expect(pm.response.code).to.be.oneOf([200,202]);\r",
+              "});\r",
+              "\r",
+              "pm.test(\"status code name has string\",()=> {\r",
+              "pm.response.to.have.status(\"OK\");\r",
+              "});\r",
+              "\r",
+              "const jsonData = pm.response.json();\r",
+              "pm.test(\"Test array properites\",()=>{\r",
+              "\r",
+              "    //courses includes \"C#\"\r",
+              "    pm.expect(jsonData.courses).to.include(\"C#\");\r",
+              "\r",
+              "    //courses includes \"RestAPI\"\r",
+              "    pm.expect(jsonData.courses).to.include(\"RestAPI\");\r",
+              "\r",
+              "    //courses does not include \"python\"\r",
+              "    pm.expect(jsonData.courses).to.not.include(\"python\");\r",
+              "\r",
+              "     // coures array must includes all listed\r",
+              "    pm.expect(jsonData.courses).to.include.members([\"C#\", \"RestAPI\"]);\r",
+              "    pm.expect(jsonData.courses).to.have.members([\"RestAPI\", \"C#\"]);\r",
+              "\r",
+              "    //courses length is 2\r",
+              "    pm.expect(jsonData.courses.length).to.eql(2);\r",
+              "    pm.expect(jsonData.courses).to.have.lengthOf(2);\r",
+              "    pm.expect(jsonData.courses).to.have.length(2);\r",
+              "\r",
+              "});\r",
+              "\r",
+              "pm.test(\"Validate the fileds in the Response\",()=>{\r",
+              "var jsonData = pm.response.json();\r",
+              "    pm.expect(jsonData.id).to.eql(\"3\");\r",
+              "    pm.expect(jsonData.name).to.eql(\"Smith\");\r",
+              "    pm.expect(jsonData.location).to.eql(\"Canada\");\r",
+              "    pm.expect(jsonData.phone).to.eql(\"165498765\");\r",
+              "    pm.expect(jsonData.courses[0]).to.eql(\"C#\");\r",
+              "    pm.expect(jsonData.courses[1]).to.eql(\"RestAPI\");\r",
+              "\r",
+              "});\r",
+              "\r",
+              "var schema = {\r",
+              "    \"type\": \"object\",\r",
+              "    \"properties\": {\r",
+              "        \"id\": {\"type\": \"string\"},\r",
+              "        \"name\": {\"type\": \"string\"},\r",
+              "        \"location\": {\"type\": \"string\"},\r",
+              "        \"phone\": {\"type\": \"string\"},\r",
+              "        \"courses\": {\"type\": \"array\", \"items\": {\"type\": \"string\"}}\r",
+              "        },\r",
+              "        \"required\": [\"id\", \"name\", \"location\", \"phone\", \"courses\"]\r",
+              "};\r",
+              "\r",
+              "pm.test(\"Response matches the JSON Schema\", function () {\r",
+              "    pm.response.to.have.jsonSchema(schema);\r",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{preprod_env_url}}/1",
+          "host": [
+            "{{preprod_env_url}}"
+          ],
+          "path": [
+            "1"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "PreproEnv_Get All Users",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Response time is less than 200ms\",()=>{\r",
+              "    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+              "});\r",
+              "\r",
+              "pm.test(\"Time is less than 100 ms\", ()=>{\r",
+              "    pm.expect(pm.response.responseTime).to.be.below(100);\r",
+              "});\r",
+              "\r",
+              "pm.test(\"Time is greater than 2 ms\", ()=>{\r",
+              "    pm.expect(pm.response.responseTime).to.be.above(2);\r",
+              "});\r",
+              "\r",
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": ""
+        },
+        "url": {
+          "raw": "{{preprod_env_url}}",
+          "host": [
+            "{{preprod_env_url}}"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "PreproEnv_Create New User",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"id\": 12 ,\r\n    \"name\": \"Clementina DuBuque\",\r\n    \"username\": \"Moriah.Stanton\",\r\n    \"email\": \"Rey.Padberg@karina.biz\",\r\n    \"address\": {\r\n      \"street\": \"Kattie Turnpike\",\r\n      \"suite\": \"Suite 198\",\r\n      \"city\": \"Lebsackbury\",\r\n      \"zipcode\": \"31428-2261\",\r\n      \"geo\": {\r\n        \"lat\": \"-38.2386\",\r\n        \"lng\": \"57.2232\"\r\n      }\r\n    },\r\n    \"phone\": \"024-648-3804\",\r\n    \"website\": \"ambrose.net\",\r\n    \"company\": {\r\n      \"name\": \"Hoeger LLC\",\r\n      \"catchPhrase\": \"Centralized empowering task-force\",\r\n      \"bs\": \"target end-to-end models\"\r\n    }}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{preprod_env_url}}",
+          "host": [
+            "{{preprod_env_url}}"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "PreProEnv_Delete User",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "{{preprod_env_url}}/2",
+          "host": [
+            "{{preprod_env_url}}"
+          ],
+          "path": [
+            "2"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "local_Get Single User",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        },
+        {
+          "listen": "prerequest",
+          "script": {
+            "exec": [
+              "//local var\r",
+              "pm.variables.set(\"local_url\",\"https://jsonplaceholder.typicode.com/users\")\r",
+              "\r",
+              "//global variable\r",
+              "pm.globals.set(\"user_id_global\",\"2\"); \r",
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{local_url}}/{{user_id_global}}",
+          "host": [
+            "{{local_url}}"
+          ],
+          "path": [
+            "{{user_id_global}}"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "local_Create New User",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        },
+        {
+          "listen": "prerequest",
+          "script": {
+            "exec": [
+              "pm.variables.set(\"url_local\",\"https://jsonplaceholder.typicode.com/users\");"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"id\": 12 ,\r\n    \"name\": \"Clementina DuBuque\",\r\n    \"username\": \"Moriah.Stanton\",\r\n    \"email\": \"Rey.Padberg@karina.biz\",\r\n    \"address\": {\r\n      \"street\": \"Kattie Turnpike\",\r\n      \"suite\": \"Suite 198\",\r\n      \"city\": \"Lebsackbury\",\r\n      \"zipcode\": \"31428-2261\",\r\n      \"geo\": {\r\n        \"lat\": \"-38.2386\",\r\n        \"lng\": \"57.2232\"\r\n      }\r\n    },\r\n    \"phone\": \"024-648-3804\",\r\n    \"website\": \"ambrose.net\",\r\n    \"company\": {\r\n      \"name\": \"Hoeger LLC\",\r\n      \"catchPhrase\": \"Centralized empowering task-force\",\r\n      \"bs\": \"target end-to-end models\"\r\n    }}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{url_local}}",
+          "host": [
+            "{{url_local}}"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "local_Delete User",
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "exec": [
+              "pm.variables.set(\"localurl\",\"https://jsonplaceholder.typicode.com/users\");\r",
+              "\r",
+              "//collection variable\r",
+              "pm.collectionVariables.set(\"user_id_collection\",\"2\")"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "{{preprod_env_url}}/{{user_id_collection}}",
+          "host": [
+            "{{preprod_env_url}}"
+          ],
+          "path": [
+            "{{user_id_collection}}"
+          ]
+        }
+      },
+      "response": []
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "collection_url",
+      "value": ""
+    },
+    {
+      "key": "user_id_collection",
+      "value": ""
+    }
+  ]
+}
