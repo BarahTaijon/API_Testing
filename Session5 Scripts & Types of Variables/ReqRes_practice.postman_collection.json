@@ -1,0 +1,108 @@
+{
+  "info": {
+    "_postman_id": "efef2b69-4d8c-433a-8a48-bf53a262b034",
+    "name": "ReqRes_practice",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "36794430",
+    "_collection_link": "https://go.postman.co/collection/36794430-efef2b69-4d8c-433a-8a48-bf53a262b034?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "Get post",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "console.log(pm.collectionVariables.get(\"coll_url\"));\r",
+              "console.log(pm.collectionVariables.get(\"coll_id\"));\r",
+              "\r",
+              "\r",
+              "pm.collectionVariables.unset(\"coll_url\");\r",
+              "pm.collectionVariables.unset(\"coll_id\");\r",
+              "\r",
+              "\r",
+              "console.log(pm.collectionVariables.get(\"coll_url\"));\r",
+              "console.log(pm.collectionVariables.get(\"coll_id\"));\r",
+              "\r",
+              "\r",
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        },
+        {
+          "listen": "prerequest",
+          "script": {
+            "exec": [
+              "\r",
+              "pm.collectionVariables.set(\"coll_url\", \"https://jsonplaceholder.typicode.com/posts/\");\r",
+              "\r",
+              "pm.collectionVariables.set(\"coll_id\", \"3\");"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{coll_url}}/{{coll_id}}",
+          "host": [
+            "{{coll_url}}"
+          ],
+          "path": [
+            "{{coll_id}}"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get All posts",
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "exec": [
+              "pm.globals.set(\"globalurl\", \"https://jsonplaceholder.typicode.com/posts/\");"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        },
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "\r",
+              "console.log(pm.globals.get(\"globalurl\"));\r",
+              "\r",
+              "pm.globals.unset(\"globalurl\");"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{globalurl}}",
+          "host": [
+            "{{globalurl}}"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}
