@@ -1,0 +1,250 @@
+{
+  "info": {
+    "_postman_id": "286c73e6-d17c-4c5e-a986-667bbae03e68",
+    "name": "2GorestAPI-Chaining",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "36794430",
+    "_collection_link": "https://go.postman.co/collection/36794430-286c73e6-d17c-4c5e-a986-667bbae03e68?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "Create User",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "var jsonData = pm.response.json();\r",
+              "\r",
+              "pm.environment.set(\"uid\", jsonData.id);\r",
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        },
+        {
+          "listen": "prerequest",
+          "script": {
+            "exec": [
+              "var random = Math.random().toString(36).substring(2);\r",
+              "\r",
+              "var email = \"Barah.\" + random + \"@15ce.com\";\r",
+              "var username = \"Barah\" + random;\r",
+              "\r",
+              "pm.environment.set(\"created_email\", email);\r",
+              "pm.environment.set(\"created_username\", username);\r",
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n\"name\":\"{{created_username}}\", \r\n\"gender\":\"female\", \r\n\"email\":\"{{created_email}}\",\r\n\"status\":\"active\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://gorest.co.in/public/v2/users",
+          "protocol": "https",
+          "host": [
+            "gorest",
+            "co",
+            "in"
+          ],
+          "path": [
+            "public",
+            "v2",
+            "users"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Update User",
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "exec": [
+              "var random = Math.random().toString(36).substring(2);\r",
+              "\r",
+              "var email = \"Barah.\" + random + \"@15ce.com\";\r",
+              "var username = \"Barah \" + random;\r",
+              "\r",
+              "pm.environment.set(\"email\", email);\r",
+              "pm.environment.set(\"username\", username);\r",
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n\"name\":\"{{username}}\", \r\n\"gender\":\"female\", \r\n\"email\":\"{{email}}\",\r\n\"status\":\"active\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://gorest.co.in/public/v2/users/{{uid}}",
+          "protocol": "https",
+          "host": [
+            "gorest",
+            "co",
+            "in"
+          ],
+          "path": [
+            "public",
+            "v2",
+            "users",
+            "{{uid}}"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get User Details",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "//validate json fields in the response \r",
+              "\r",
+              "pm.test(\"values of json fields\", ()=>{\r",
+              "\r",
+              "var jsonData = pm.response.json(); //parse the response body to json\r",
+              "    pm.expect(jsonData.name).to.eql(pm.environment.get(\"created_username\"));\r",
+              "    pm.expect(jsonData.email).to.eql(pm.environment.get(\"created_email\"));\r",
+              "\r",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://gorest.co.in/public/v2/users/{{uid}}",
+          "protocol": "https",
+          "host": [
+            "gorest",
+            "co",
+            "in"
+          ],
+          "path": [
+            "public",
+            "v2",
+            "users",
+            "{{uid}}"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Delete User",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.globals.unset(\"uid\");\r",
+              "pm.globals.unset(\"created_username\");\r",
+              "pm.globals.unset(\"created_email\");"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "https://gorest.co.in/public/v2/users/{{uid}}",
+          "protocol": "https",
+          "host": [
+            "gorest",
+            "co",
+            "in"
+          ],
+          "path": [
+            "public",
+            "v2",
+            "users",
+            "{{uid}}"
+          ]
+        }
+      },
+      "response": []
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "8329fba9d06313835941b8cbf95d1f5e6f85e498caa21a0458a07319490fcc7d",
+        "type": "string"
+      }
+    ]
+  },
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "uid",
+      "value": ""
+    }
+  ]
+}
