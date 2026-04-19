@@ -1,12 +1,12 @@
 - API chaining:
-	 is when you send an API request, and receive a response,
-	 then send that response as a request to the next API
+	 is when you send an API request and receive a response,
+	 Then send that response as a request to the next API
 	 (So the response of one API became a request in another API)
 - There will be some dependencies between requests.
-- here, you need to store the response in a variable, then use it in the reqest of another API
+- Here, you need to store the response in a variable, then use it in the request to another API
 
 Example
-1. First, in POST request create a new student without send id then capture the id in the Post-request 
+1. First, in the POST request, create a new student without sending an ID, then capture the ID in the POST request 
 
     var jsonData = JSON.parse(responseBody);
     pm.environment.set("student_id", jsonData.id);
@@ -19,21 +19,21 @@ Example
 
 ============
 
-Remote API: no need to make setup/json, only send the url through postman
+Remote API: no need to make setup/json, only send the URL through Postman
 
-Local API: run json server, and to have a json file 
+Local API: run JSON server, and to have a json file 
 
-Authorization: is a prerequisite to access the Remote API (through inernet) 
-	- Request methods (PUT, POST, PATCH, DELETE) needs access token, which needs to be passed with "Authorization" header as Bearer token
-	- Authorization tokens has many types (wil discuss later).
+Authorization: is a prerequisite to access the Remote API (through the internet) 
+	- Request methods (PUT, POST, PATCH, DELETE) need an access token, which needs to be passed with the "Authorization" header as a Bearer token
+	- Authorization tokens have many types (will discuss later).
         - One of these types is "Bearer token". 
-		- so we want to create it.
+		- So we want to create it.
 
 
 =============
 
 
-https://gorest.co.in/  → is a website for sample API with end points for explore & testing purposes
+https://gorest.co.in/  → is a website for a sample API with endpoints for exploring and testing purposes
 
 
 *End Points:
@@ -49,7 +49,7 @@ DELETE		/public/v2/users/7984698	Delete user
 
 *Token: In GoRESRT, click `Get your access token` to get one.
 
-*Request Body: you should know the Request Body, under `Create User` 
+*Request Body: You should know the Request Body, under `Create User` 
 
 {
 "name":"Tenali Ramakrishna", 
@@ -68,13 +68,15 @@ Ex
 	    2.2 update the user details
 	    2.3 delete user 
 
-First,  create the required requests 
+First,  create the required requests.
+
 Second, put the token in the `Authorization` [author tab bside body & scripts tabs]
 	request lvl (req)→ Authorization → Bearer Token →  put the token
 	collection lvl (col)→ Authorization → Bearer Token → put the token → (req)→ Authorization → inherit auth from parent
+
 Third,  we want to send dynamic data (body is static, and email is unique for every user), so to create a dynamic data,
 	
-	in pre-scripts:
+	in pre-respond:
 
 	var random = Math.random().toString(36).substring(2);
 
@@ -94,7 +96,33 @@ Third,  we want to send dynamic data (body is static, and email is unique for ev
 	}
 
 
-Fourth, Same in the PUT to update a user dynamically, we should create random in script/ send it in body
+   in post-request:
+
+	var jsonData = pm.response.json();
+    pm.environment.set("uid", jsonData.id);
+
+
+
+
+
+Fourth, compare the GET request info with the original created one (randomly) from the POST.
+	
+	URL :		https://gorest.co.in/public/v2/users/{{uid}}
+
+
+    In GET post-response:
+
+    pm.test("values of json fields", ()=>{
+	var jsonData = pm.response.json(); //parse the response body to json
+    pm.expect(jsonData.name).to.eql(pm.environment.get("created_username"));
+	pm.expect(jsonData.email).to.eql(pm.environment.get("created_email"));
+	});
+
+
+
+Fifth, same in the PUT to update a user dynamically, we should create random in script/ send it in body
+
+	URL :		https://gorest.co.in/public/v2/users/{{uid}}
 
 	in pre-scripts:
 
@@ -115,23 +143,6 @@ Fourth, Same in the PUT to update a user dynamically, we should create random in
 	"status":"active"
 	}
 	
-
-
-fifth, we want to compare the GET request info with the original created one (randomly) from the POST.
-
-     - to compare them we should add a test assertion in GET post response
-
-
-	//validate json fields in the response 
-
-	pm.test("values of json fields", ()=>{
-
-	var jsonData = pm.response.json(); //parse the response body to json
-	pm.expect(jsonData.name).to.eql(pm.environment.get("created_username"));
-	pm.expect(jsonData.email).to.eql(pm.environment.get("created_email"));
-
-	});
-
 
 sixth, remove the variable created after delete the user 
 
