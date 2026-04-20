@@ -1,0 +1,48 @@
+Bug Report: 401 Unauthorized Error on Valid Request
+Bug ID: #SB-001
+
+Title: System returns "Missing Authorization header" despite header being present in the request.
+
+Severity: High (Blocker - Users cannot place orders).
+
+Priority: High.
+
+Environment: Postman v10.x, Simple Books API (https://simple-books-api.glitch.me).
+
+Description:
+The API returns a 401 Unauthorized status code with the message "error" "Missing Authorization header" when attempting to create a new order, even though a valid Bearer Token is correctly included in the request headers.
+
+Steps to Reproduce:
+Generate a new access token via POST /api-clients/.
+Create a new POST request to /orders.
+In the Authorization tab, select Bearer Token and input the generated token.
+Set the request body to raw/JSON with valid bookId and customerName.
+Click Send.
+
+Expected Result:
+The server should validate the token and return 201 Created with the order details.
+
+Actual Result:
+The server returns 401 Unauthorized with the body 
+{
+    "error": "Missing Authorization header."
+}
+
+Investigation & Technical Evidence:
+Console Log Analysis:
+The Postman console logs confirm that the Authorization: 
+Bearer <TOKEN> header was successfully constructed and sent in the request. 
+The server's failure to recognize it suggests a server-side issue rather than a client-side configuration error.
+
+Network Handshake and Redirects:
+During the handshake with authority simple-books-api.click, there is a potential Header Stripping issue.
+This often happens when an API Gateway or Load Balancer is misconfigured and drops security headers during redirection.
+
+Isolation Testing: 
+To isolate the root cause, I performed a cross-check using Postman Echo API. 
+The header was successfully reflected in the response,
+confirming that the local Postman environment and the auth-header logic are functioning correctly.
+
+Environment Verification:
+The issue was reproduced on both Postman Web and Postman Desktop (Windows),
+ruling out any browser-specific or local cache issues.
