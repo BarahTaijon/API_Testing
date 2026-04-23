@@ -1,0 +1,88 @@
+
+Data-driven testing (DDT) 
+- is a software testing methodology where test data is stored externally [e.g. in spreadsheets or databases], 
+	and used to use in the request.
+
+- pass the data for requests, execute the data multiple times with different data
+====================================================
+
+Books API
+
+1. Authentication
+   - First, we need an authen submit/view an order 
+   - we need to register our API client	→ POST/api-clients
+   - In the body needs to be in JSON format and include the following properties:
+	- client Name & Email
+   
+	{	
+	"clientName":"Testing111",
+    	"clientEmail":"TrainingTest@gmail.com"
+	}
+
+{
+    "accessToken": "c0a148bf94526e0fcc79d3c72b9fd6e03c7cbe5d3613cb7f6bdca2d1ae561471"
+}
+
+
+
+
+- Note: URL variable is declared in collec-lvl, then use it in all requests
+- Note: Access token variable is declared in collec-lvl
+	- it is add as a bareaer token [so we don't use it for all requests]
+	- if we add it to col/authen the it could inhert by all requests, and sent it with all requests which is not necessary
+
+
+
+
+2. Books : GET status, list of books, a single book
+
+	2.1 Get {{url}}/status 
+	2.2 Get {{url}}/books
+	2.3 Get {{url}}/books/2
+
+
+3. Orders: post an order, get all orders, get an order
+
+	3.1 Post {{url}}/orders
+
+	In the body/raw/Json:
+		{
+  		"bookId": "1",
+		"customerName": "Tom"
+		}
+
+	In the authorization/bearer token:
+		put the var created
+	
+	3.2 Get {{url}}/orders
+	3.3 Get {{url}}/orders/1
+
+
+
+
+Assignment: add validation tests to all requests
+====================================================
+
+
+DDT
+
+1. Create 3 requests a. Post, b.put, and c. Del
+	-> post a user, and take it's id, through it put the user info, then delete it.
+
+2. post body: 
+    {
+        "name": "{{User_Name}}",
+        "email": "{{User_Email}}",
+        "gender": "{{User_Gender}}",
+        "status": "{{User_Status}}"
+    }
+
+Note: these variables are column names in the CSV/JSON file; at running time, it will take raw by raw 
+
+3. Click the col name, then click `run` above right the window
+
+	iteration = number of rows you want to run 
+	delay = time of delay between requests
+	Select file = data file to be run
+
+4. start run 
