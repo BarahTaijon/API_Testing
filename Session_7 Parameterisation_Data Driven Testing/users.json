@@ -1,0 +1,32 @@
+[
+  {
+    "User_Name": "Ahmad Mohammed",
+    "User_Email": "Ahmad_Mohammed@test.com",
+    "User_Gender": "Male",
+    "User_Status": "Active"
+  },
+  {
+    "User_Name": "Amal naser",
+    "User_Email": "Amal_naser@test.com",
+    "User_Gender": "Female",
+    "User_Status": "Active"
+  },
+  {
+    "User_Name": "nour momen",
+    "User_Email": "nourmomen@test.com",
+    "User_Gender": "Female",
+    "User_Status": "Active"
+  },
+  {
+    "User_Name": "Ali omar",
+    "User_Email": "Ali.omar@test.com",
+    "User_Gender": "Male",
+    "User_Status": "Inactive"
+  },
+  {
+    "User_Name": "marwan bashar",
+    "User_Email": "marwan_bashar@test.com",
+    "User_Gender": "Male",
+    "User_Status": "Active"
+  }
+]
