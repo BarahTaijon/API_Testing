@@ -1,0 +1,209 @@
+# Upload file/s in Postman
+	
+
+	- Write cmd in the path of the jar file "java -jar file-upload-RestAPI.jar". Jar now running 
+
+	- In browser write : http://localhost:8080/ 	
+	    →  On this port number your API will run, and you can see UI app 
+	    →  here you can UI functionality, that's should hapen through API
+
+
+- POST {{UploadLink}}/uploadFile 	or 	http://localhost:8080/uploadFile
+
+	1. Go to Body section, under it, Go to form-data
+	2. Under `Key` write : file , in dropdown choose File (instead of Text)
+	3. Under `Value` specifiy the file you want to upload
+		Note: Make sure that the uploaded file is in the location specified by Postman 
+		      [ to know the loc go to setting → (ctrl+ , )/General/loaction ]
+
+
+
+- POST {{UploadLink}}//uploadMultipleFiles 	or 	http://localhost:8080//uploadMultipleFiles
+
+	
+	Same steps but in `Key` write : files 
+
+
+
+=================================================================================
+
+
+# Authentication types
+
+1. API Key - we want a key
+2. Bearer token - we want a token
+3. Basic Auth - need password & username - data not encrypted
+4. Digest Auth - need password & username - data encrypted [more secure]
+4. OAuth 1.0 - third party auth - need third party code
+5. OAuth 2.0 - third party auth
+
+
+Note: we can't use every type of auth for every type of API,
+      It depends on how the api got designed, based on that we used particuler auth.
+      In requirement, it'ill be provide u what type of auth u can use
+
+
+=====================================================
+
+
+Basic Auth
+The endpoint accepts a default username and password and returns a status code of 200 ok only if the same is provided.
+Otherwise it will return a status code 401 unauthorized.
+
+Username: postman
+Password: password 
+
+
+----------------
+
+Digest Auth
+
+
+under Auth type/ digest, you will see this message
+```
+By default, Postman will extract values from the received response, add it to the request, and retry it. 
+Do you want to disable this?
+```
+under message there is an option
+
+
+----------------
+
+OAuth 0.2
+
+client: send client id to server
+server: once validate send back a responce to client [secret id]
+client send the secret id from to server
+server: send the token to client 
+
+
+Note the process is the same, but the steps will be different based on the app type
+
+
+
+Example
+setup OAuth2.0-GitHup App
+
+a. create a new GitHub App 
+   Login to Github → Go to profile → settings → Developer settings →  OAuth Apps
+   create an app fill: 
+			Application name
+			Homepage URL http://localhost:3000/
+			Authorization callback URL //localhost:3000/callback
+  
+Client ID
+Ov23liDFsWthVIU06nBT
+
+Client secrets
+ae112b666e166f06fe5aa80f925f8923f4f37d59
+
+
+-----------------------------------------------------------------
+THE WHOLE PROCESS 
+==================
+We will send client id
+the github check if client id is correct or not 
+if correct it will send a response [Secret id]
+then, we need to send this [Secret id] back to the server
+finally it will send you a [token], that's token will be used
+to access the API
+------------------------------------------------------------------
+
+
+b. Step1 - Request a user's Github identity
+
+
+Get	 http://github.com/login/oauth/authorize?client_id=Ov23liDFsWthVIU06nBT
+
+in params section, i passed [client_id]
+
+=> once you submit [the url should be open in your browser], and you will get the [code] inside the url 
+
+
+
+
+
+c. Step2 - User are redirected back to your site by Github
+
+
+Post	http://github.com/login/oauth/access_token?client_id=Ov23liDFsWthVIU06nBT&client_secret=ae112b666e166f06fe5aa80f925f8923f4f37d59&code=26d5e146b8c217901df6
+
+we will send 3 parameters, [client_id, client_secret, code]
+
+=> now you will get the [access_token]
+access_token=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&scope=&token_type=bearer
+
+
+
+
+
+d. Step3 - Use the access token to access the API 
+
+
+Get	https://api.github.com/user
+
+In Authorization, choose the type OAuth 2.0
+Paste the access token [only the accesss token, delete the rest
+ (&scope=&token_type=bearer)]
+
+
+
+
+
+
+=================================================================================
+
+# Swagger
+ - is an interactive documentation
+ [if dev design some api's, if he want to provide some info about these api's
+  so he want to document it using Ms word or pdf, these doc aren't interactive docs]
+ [dev share info about api's what is the reqest url, what kind of request u have to send , kind of response you 
+  will get into interactive doc called swagger]
+ 
+ - the difference between static & interactive : that in interactive doc itself you can explore API's 
+	that will interact with the server 
+
+ - before testing the actual API's, we should go to swagger document because it contains a detailed info about ur api
+	if it's only info you just read it
+	if it's an interactive info u try itf
+
+ - Look at this example: https://fakerestapi.azurewebsites.net/index.html
+	( click try it & execute ) 
+	- try it on postman to ensure that it gives same response
+
+ - Difference betw Postman & Swagger - there are many differences the main diff
+	* swagger used to only for exploring the api's not for testing purpose
+	  postman we do the testing.
+	* In swagger, we cann't put any validations or tests, in postman we can
+	* In swagger, we cann't save results anywhere else
+
+
+
+
+# cURL
+ - stands for Client URL
+ - it is a command (you can try it in the cmd)
+ - stime in API doc a curl is provided 
+ - some doc, don't directly provide the request url,
+	instead of that, they gives curl
+ - curl contains url along with the headers, information, authenticaion
+ - instead of giving all info (in body & auth & param sections), you only give the crul 
+
+ - To creat a request form a curl: copy curl &  click import  & paste it 
+
+ - Swagger is the doc that avaliable before testing & `summery report` is the doc avaliable after testing
+
+
+
+
+
+# View documentation
+ - after API testing comleted 
+	- a document about
+	- Type of testing are executed, the senario that tested.
+	- number of collections, and requests are created.
+
+ - Go to the left-hand sidebar where your Collections are displayed.
+ - Click on the name of the Collection.
+ - A page will appear in the middle with tabs; one of them is called Documentation. Click on it.
+ - the doc will appear
