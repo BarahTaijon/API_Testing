@@ -1,0 +1,116 @@
+{
+  "info": {
+    "_postman_id": "7165fd06-7a34-457a-a98e-f2652f552c3c",
+    "name": "3Swagger",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "36794430",
+    "_collection_link": "https://go.postman.co/collection/36794430-7165fd06-7a34-457a-a98e-f2652f552c3c?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "https://fakerestapi.azurewebsites.net/api/v1/Activities",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "accept",
+            "value": "text/plain; v=1.0"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json; v=1.0"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"id\":0,\"title\":\"string\",\"dueDate\":\"2026-04-26T12:35:19.019Z\",\"completed\":true}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://fakerestapi.azurewebsites.net/api/v1/Activities",
+          "protocol": "https",
+          "host": [
+            "fakerestapi",
+            "azurewebsites",
+            "net"
+          ],
+          "path": [
+            "api",
+            "v1",
+            "Activities"
+          ]
+        },
+        "description": "Generated from cURL: curl -X POST \"https://fakerestapi.azurewebsites.net/api/v1/Activities\" -H  \"accept: text/plain; v=1.0\" -H  \"Content-Type: application/json; v=1.0\" -d \"{\\\"id\\\":0,\\\"title\\\":\\\"string\\\",\\\"dueDate\\\":\\\"2026-04-26T12:35:19.019Z\\\",\\\"completed\\\":true}\""
+      },
+      "response": []
+    },
+    {
+      "name": "Swagger Get request",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://fakerestapi.azurewebsites.net/api/v1/Activities",
+          "protocol": "https",
+          "host": [
+            "fakerestapi",
+            "azurewebsites",
+            "net"
+          ],
+          "path": [
+            "api",
+            "v1",
+            "Activities"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "https://fakerestapi.azurewebsites.net/api/v1/CoverPhotos/3",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "accept",
+            "value": "text/plain; v=1.0"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json; v=1.0"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"id\":3,\"idBook\":0,\"url\":\"string\"}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://fakerestapi.azurewebsites.net/api/v1/CoverPhotos/3",
+          "protocol": "https",
+          "host": [
+            "fakerestapi",
+            "azurewebsites",
+            "net"
+          ],
+          "path": [
+            "api",
+            "v1",
+            "CoverPhotos",
+            "3"
+          ]
+        },
+        "description": "Generated from cURL: curl -X PUT \"https://fakerestapi.azurewebsites.net/api/v1/CoverPhotos/3\" -H  \"accept: text/plain; v=1.0\" -H  \"Content-Type: application/json; v=1.0\" -d \"{\\\"id\\\":3,\\\"idBook\\\":0,\\\"url\\\":\\\"string\\\"}\""
+      },
+      "response": []
+    }
+  ]
+}
