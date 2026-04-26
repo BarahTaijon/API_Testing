@@ -1,0 +1,346 @@
+{
+  "info": {
+    "_postman_id": "91a5710b-f540-43c7-8969-a62c5b329e88",
+    "name": "2Authentication Methods",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "36794430",
+    "_collection_link": "https://go.postman.co/collection/36794430-91a5710b-f540-43c7-8969-a62c5b329e88?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "OAuth 0.2 - Github App",
+      "item": [
+        {
+          "name": "Step1 - Request a user's Github identity",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://github.com/login/oauth/authorize?client_id=Ov23liDFsWthVIU06nBT",
+              "protocol": "http",
+              "host": [
+                "github",
+                "com"
+              ],
+              "path": [
+                "login",
+                "oauth",
+                "authorize"
+              ],
+              "query": [
+                {
+                  "key": "client_id",
+                  "value": "Ov23liDFsWthVIU06nBT"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Step2 - User are redirected back to your site by Github",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "http://github.com/login/oauth/access_token?client_id=Ov23liDFsWthVIU06nBT&client_secret=ae112b666e166f06fe5aa80f925f8923f4f37d59&code=ab87d5eec622d86e01cf",
+              "protocol": "http",
+              "host": [
+                "github",
+                "com"
+              ],
+              "path": [
+                "login",
+                "oauth",
+                "access_token"
+              ],
+              "query": [
+                {
+                  "key": "client_id",
+                  "value": "Ov23liDFsWthVIU06nBT"
+                },
+                {
+                  "key": "client_secret",
+                  "value": "ae112b666e166f06fe5aa80f925f8923f4f37d59"
+                },
+                {
+                  "key": "code",
+                  "value": "ab87d5eec622d86e01cf"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Step3 - Use the access token to access the API - list specific user",
+          "request": {
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "addTokenTo",
+                  "value": "header",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "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&scope=&token_type=bearer",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "https://api.github.com/user",
+              "protocol": "https",
+              "host": [
+                "api",
+                "github",
+                "com"
+              ],
+              "path": [
+                "user"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Step3 - Use the access token to access the API - list specific user Copy",
+          "request": {
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "addTokenTo",
+                  "value": "header",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "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&scope=&token_type=bearer",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "https://api.github.com/users",
+              "protocol": "https",
+              "host": [
+                "api",
+                "github",
+                "com"
+              ],
+              "path": [
+                "users"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Basic Auth",
+      "request": {
+        "auth": {
+          "type": "basic",
+          "basic": [
+            {
+              "key": "password",
+              "value": "password",
+              "type": "string"
+            },
+            {
+              "key": "username",
+              "value": "postman",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://postman-echo.com/basic-auth",
+          "protocol": "https",
+          "host": [
+            "postman-echo",
+            "com"
+          ],
+          "path": [
+            "basic-auth"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Basic Auth 2",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"response body as saying Congratulations\",()=>{\r",
+              "\r",
+              "        pm.expect(pm.response.text()).to.include(\"Congratulations\");\r",
+              "\r",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "auth": {
+          "type": "basic",
+          "basic": [
+            {
+              "key": "password",
+              "value": "admin",
+              "type": "string"
+            },
+            {
+              "key": "username",
+              "value": "admin",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://the-internet.herokuapp.com/basic_auth",
+          "protocol": "https",
+          "host": [
+            "the-internet",
+            "herokuapp",
+            "com"
+          ],
+          "path": [
+            "basic_auth"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Digest ِAuth",
+      "request": {
+        "auth": {
+          "type": "digest",
+          "digest": [
+            {
+              "key": "disableRetryRequest",
+              "value": false,
+              "type": "boolean"
+            },
+            {
+              "key": "algorithm",
+              "value": "MD5",
+              "type": "string"
+            },
+            {
+              "key": "nonce",
+              "value": "",
+              "type": "string"
+            },
+            {
+              "key": "realm",
+              "value": "",
+              "type": "string"
+            },
+            {
+              "key": "password",
+              "value": "password",
+              "type": "string"
+            },
+            {
+              "key": "username",
+              "value": "postman",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://postman-echo.com/digest-auth",
+          "protocol": "https",
+          "host": [
+            "postman-echo",
+            "com"
+          ],
+          "path": [
+            "digest-auth"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Key API",
+      "request": {
+        "auth": {
+          "type": "apikey",
+          "apikey": [
+            {
+              "key": "value",
+              "value": "081b62257bdb69529830b2839dffbd61",
+              "type": "string"
+            },
+            {
+              "key": "in",
+              "value": "query",
+              "type": "string"
+            },
+            {
+              "key": "key",
+              "value": "appid",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "api.openweathermap.org/data/2.5/forecast/daily?lat=32.281235&lon=35.9010013&cnt=14",
+          "host": [
+            "api",
+            "openweathermap",
+            "org"
+          ],
+          "path": [
+            "data",
+            "2.5",
+            "forecast",
+            "daily"
+          ],
+          "query": [
+            {
+              "key": "lat",
+              "value": "32.281235"
+            },
+            {
+              "key": "lon",
+              "value": "35.9010013"
+            },
+            {
+              "key": "cnt",
+              "value": "14"
+            }
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}
