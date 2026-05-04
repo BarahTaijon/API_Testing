@@ -1,0 +1,146 @@
+{
+	"id": "6d2eb54c-c2ea-4365-b902-0a08372f35d4",
+	"name": "PetStore_JSON",
+	"timestamp": "2026-05-01T22:22:17.029Z",
+	"collection_id": "36794430-37b19aca-a92c-44fe-8dc7-2842d05c5a26",
+	"folder_id": 0,
+	"environment_id": "36794430-13442cc3-dbaf-4ff6-8812-14ca22be3c6a",
+	"totalPass": 4,
+	"delay": 0,
+	"persist": true,
+	"status": "finished",
+	"startedAt": "2026-05-01T22:22:15.407Z",
+	"totalFail": 0,
+	"results": [
+		{
+			"id": "5b03983b-d6c4-4ab1-af99-947609a5accd",
+			"name": "Create User",
+			"url": "https://petstore.swagger.io/v2/user",
+			"time": 189,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Successful POST request": true
+			},
+			"testPassFailCounts": {
+				"Successful POST request": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				189
+			],
+			"allTests": [
+				{
+					"Successful POST request": true
+				}
+			]
+		},
+		{
+			"id": "49f3a673-5277-4506-8fba-2b181b21fe3a",
+			"name": "Get User By Name",
+			"url": "https://petstore.swagger.io/v2/user/7l9gof",
+			"time": 205,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				205
+			],
+			"allTests": [
+				{
+					"Status code is 200": true
+				}
+			]
+		},
+		{
+			"id": "f51adb1e-df07-4939-8999-35345cc30913",
+			"name": "Update User By Name",
+			"url": "https://petstore.swagger.io/v2/user/7l9gof",
+			"time": 204,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				204
+			],
+			"allTests": [
+				{
+					"Status code is 200": true
+				}
+			]
+		},
+		{
+			"id": "167569ae-a8a0-4853-8b2c-b72640d77829",
+			"name": "Delete User By Name",
+			"url": "https://petstore.swagger.io/v2/user/7l9gof",
+			"time": 187,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				187
+			],
+			"allTests": [
+				{
+					"Status code is 200": true
+				}
+			]
+		}
+	],
+	"count": 1,
+	"totalTime": 785,
+	"collection": {
+		"requests": [
+			{
+				"id": "5b03983b-d6c4-4ab1-af99-947609a5accd",
+				"method": "POST"
+			},
+			{
+				"id": "49f3a673-5277-4506-8fba-2b181b21fe3a",
+				"method": "GET"
+			},
+			{
+				"id": "f51adb1e-df07-4939-8999-35345cc30913",
+				"method": "PUT"
+			},
+			{
+				"id": "167569ae-a8a0-4853-8b2c-b72640d77829",
+				"method": "DELETE"
+			}
+		]
+	}
+}
