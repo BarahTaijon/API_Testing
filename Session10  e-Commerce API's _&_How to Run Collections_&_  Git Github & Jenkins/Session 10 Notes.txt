@@ -1,0 +1,87 @@
+f- download opencart  [We install it bec, access api only for admin users]
+
+- download XAMPP
+ 
+- Lunch apache & mysql in XAMPP, to access ur application 
+	- apache to run web app for the server 
+	- sql every web app internally has a database 
+
+- xampp already install mysql, but you have to create the database in it, and associate the db
+  with the web app 
+	- start apache & sql and go to http://localhost/phpmyadmin/ - this is my db of that app
+	- 'openshop' is the name of your db 
+	- once u create it, go to https://localhost/opencart/	 to connect the db with
+
+
+- Front-end app url: http://localhost/opencart/upload
+
+- Back-end app url: http://localhost/opencart/upload/admin/ 
+	- go to sys - users - api
+
+- Add new user(if u want), generate token, enabeled status, add ip address
+
+
+=======================
+
+- How many ways you can run the collection ?
+
+1. Run the collection locally [in the command prompt]
+   	- newman
+	- newman-reporter-html    -> to generate reports
+
+* to install newman on command line write :  npm install -g newman
+
+* to install newman-reporter-html write : npm install -g newman-reporter-html
+
+* to run the collection : run newman [coll name].json
+* to run the collection to generate HTML report: run newman [coll name].json -r html 
+	* where it will generate the report? in the same location wherever u store the collection
+
+2. Run the collection remotely using url [jenkins]
+
+* on the coll name - click `share`
+	you can share with people just provide their email or json
+
+* in the Jenkins file/cmd -> java -jar jenkins.war [To start jenkins]
+* I start run jenkins on port# 9090 & use this command -> java -jar jenkins.war --httpPort=9090
+
+* add item, then
+	* 'the name of coll' 
+	*  Build steps(execute window batch prompt)
+	*  Apply
+
+
+3. run the collection in jenkins from the Github 
+
+push ur collection into github repo -> 
+	- Create an empty repos
+	- Once you creat repos u will git the repos url [called remote repo URL]
+	- u have to to add ur local repos [the git is installed] so when u click right find `Git GUI Here` & `Git Bash Here` 
+
+a. Create ur local repo
+	- where you export the collection, click right then `Git Bash Here` 
+	- $ git init
+
+b. Associate the local repo with remote repo 
+	- $ git remote add origin -'the link of repo'- (when u create the repo they command with link inside the repo
+
+c. add file to index/stage
+	- $git add filename
+
+d. commit the file into local repo
+	- $ git commit -m "comment" filename
+ 		
+To see the status : $ git status
+
+e. push it to remote repo "GitHub repo"
+$ git push origin master
+
+f. refresh the github repo - now you can find the repo and execute the collection
+
+
+g. to run the jenkines from the github
+- 	add item
+- 	Source Code Management choose:"Git"
+- 	Put the Repo URL
+-	Build choose: "Execute window batch command"
+		- run newman [coll name].json -r html
