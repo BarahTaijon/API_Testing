@@ -7,7 +7,7 @@
     - folder
     - request
 
-- the biggest one is collection inside it folder inside it a request
+- The biggest one is a collection inside a folder inside a request
 
 - The flow of execution: 
 Collection (pre-req-script) → Folder (pre-req-script) → Request (pre-req-script)  [Reqest → Respond] Collection (post-resp-script) → Folder (post-resp-script) → Request (post-resp-script)
